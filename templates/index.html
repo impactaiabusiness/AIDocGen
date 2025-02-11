@@ -51,7 +51,7 @@
             border-radius: 8px;
             border: 1px solid gold;
             padding: 10px;
-            text-transform: uppercase; /* Transforma o texto em maiúsculas */
+            text-transform: uppercase;
         }
         .alert-success {
             font-weight: bold;
@@ -75,12 +75,29 @@
 
             <div class="mb-3">
                 <label for="nacionalidade" class="form-label">Nacionalidade</label>
-                <input type="text" class="form-control uppercase-input" id="nacionalidade" name="nacionalidade" required>
+                <select class="form-control" id="nacionalidade" name="nacionalidade" required>
+                    <option value="SELECIONE">SELECIONE</option>
+                    <option value="BRASILEIRO">BRASILEIRO</option>
+                    <option value="BRASILEIRA">BRASILEIRA</option>
+                    <option value="ESTRANGEIRO">ESTRANGEIRO</option>
+                    <option value="ESTRANGEIRA">ESTRANGEIRA</option>
+                </select>
             </div>
 
             <div class="mb-3">
                 <label for="estado_civil" class="form-label">Estado Civil</label>
-                <input type="text" class="form-control uppercase-input" id="estado_civil" name="estado_civil" required>
+                <select class="form-control" id="estado_civil" name="estado_civil" required>
+                    <option value="SELECIONE">SELECIONE</option>
+                    <option value="SOLTEIRO">SOLTEIRO</option>
+                    <option value="SOLTEIRA">SOLTEIRA</option>
+                    <option value="CASADO">CASADO</option>
+                    <option value="CASADA">CASADA</option>
+                    <option value="DIVORCIADO">DIVORCIADO</option>
+                    <option value="DIVORCIADA">DIVORCIADA</option>
+                    <option value="VIUVO">VIÚVO</option>
+                    <option value="VIUVA">VIÚVA</option>
+                    <option value="UNIAO ESTAVEL">UNIÃO ESTÁVEL</option>
+                </select>
             </div>
 
             <div class="mb-3">
@@ -125,7 +142,36 @@
 
             <div class="mb-3">
                 <label for="estado" class="form-label">Estado</label>
-                <input type="text" class="form-control uppercase-input" id="estado" name="estado" required>
+                <select class="form-control" id="estado" name="estado" required>
+                    <option value="SELECIONE">SELECIONE</option>
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MT">MT</option>
+                    <option value="MS">MS</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP">SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
+                </select>
             </div>
 
             <div class="mb-3">
@@ -155,7 +201,6 @@
     </div>
 
     <script>
-        // Força a conversão para maiúsculas ao digitar
         document.querySelectorAll('.uppercase-input').forEach(input => {
             input.addEventListener('input', function() {
                 this.value = this.value.toUpperCase();
