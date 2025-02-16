@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo ao AI DocGen</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #000000,rgba(31, 95, 133, 0.25));
+            color: #00d4ff;
+            overflow: hidden;
+            position: relative;
+        }
+        .glow {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(0,212,255,0.2) 10%, rgba(0,0,0,1) 80%);
+        }
+        .container {
+            text-align: center;
+            background: radial-gradient(circle,rgb(172, 148, 16) 0%, #000000 100%);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #00d4ff;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+            background: #00d4ff;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 15px #00d4ff;
+        }
+        .btn:hover {
+            background: #0088cc;
+            box-shadow: 0 0 30px #00d4ff, 0 0 50px #00d4ff;
+            transform: scale(1.1);
+        }
+        .animation {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(0, 212, 255, 0.4);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+            top: 20%;
+            left: 10%;
+            animation: float 6s infinite alternate ease-in-out;
+        }
+        .animation:nth-child(2) {
+            top: 70%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+        @keyframes float {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-30px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow"></div>
+    <div class="animation"></div>
+    <div class="animation"></div>
+    <div class="container">
+        <h1>Bem-vindo ao AI DocGen</h1>
+        <a href="{{ url_for('login') }}" class="btn">ENTRAR</a>
+    </div>
+</body>
+</html>
