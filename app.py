@@ -30,9 +30,9 @@ class Defesa(db.Model):
     cidade = db.Column(db.String(100), nullable=False)
     estado = db.Column(db.String(2), nullable=False)
     cep = db.Column(db.String(9), nullable=False)
-    ddd = db.Column(db.String(4), nullable=False)
-    telefone = db.Column(db.String(15), nullable=False)
-    email = db.Column(db.String(150), nullable=False)
+    ddd = db.Column(db.String(4), nullable=True)
+    telefone = db.Column(db.String(15), nullable=True)
+    email = db.Column(db.String(150), nullable=True)
 
 # Criar banco de dados
 with app.app_context():
@@ -49,15 +49,15 @@ def login():
     if request.method == 'POST':
         usuario = request.form.get('usuario')
         senha = request.form.get('senha')
-        if (usuario == 'igor' or usuario == 'vitor' or usuario == 'david') and (senha == 'igor' or senha == 'vitor' or senha == 'david'):
+        if (usuario in ['igor', 'vitor', 'david']) and (senha in ['igor', 'vitor', 'david']):
             session['usuario'] = usuario
-            return redirect(url_for('procuracao'))  # Alterado para '/procuracao'
-        else: 
+            return redirect(url_for('procuracao'))
+        else:
             return render_template('login.html', erro='Usuário ou senha incorretos!')
     return render_template('login.html')
 
 # Rota para exibir o formulário de procuração
-@app.route('/procuracao')  # Alterado para '/procuracao'
+@app.route('/procuracao')
 def procuracao():
     if 'usuario' not in session:
         return redirect(url_for('login'))
@@ -73,8 +73,8 @@ def preencher_docx(dados):
 
     doc = Document(modelo_path)
 
-    # Converter todos os valores para maiúsculas
-    dados = {chave: valor.strip().upper() for chave, valor in dados.items()}
+    # Converter todos os valores para maiúsculas, removendo espaços extras
+    dados = {chave: valor.strip().upper() if valor else "" for chave, valor in dados.items()}
 
     # Substituir placeholders nos parágrafos
     for paragrafo in doc.paragraphs:
@@ -82,7 +82,13 @@ def preencher_docx(dados):
         for chave, valor in dados.items():
             placeholder = f"{{{{{chave}}}}}"
             texto_modificado = texto_modificado.replace(placeholder, valor)
-        
+
+        # Remover "E-MAIL:" e "TELEFONE:" caso os campos estejam vazios
+        if "E-MAIL:" in texto_modificado and not dados.get("email"):
+            texto_modificado = texto_modificado.replace("E-MAIL:", "").strip()
+        if "TELEFONE:" in texto_modificado and not dados.get("telefone"):
+            texto_modificado = texto_modificado.replace("TELEFONE:", "").strip()
+
         if texto_modificado != paragrafo.text:
             paragrafo.clear()
             run = paragrafo.add_run(texto_modificado)
@@ -90,7 +96,7 @@ def preencher_docx(dados):
             run.font.name = "Times New Roman"
             run.font.size = Pt(12)
 
-    # Substituir placeholders dentro das tabelas
+    # Substituir placeholders dentro das tabelas (caso existam)
     for tabela in doc.tables:
         for linha in tabela.rows:
             for celula in linha.cells:
@@ -98,6 +104,12 @@ def preencher_docx(dados):
                 for chave, valor in dados.items():
                     placeholder = f"{{{{{chave}}}}}"
                     texto_modificado = texto_modificado.replace(placeholder, valor)
+                
+                if "E-MAIL:" in texto_modificado and not dados.get("email"):
+                    texto_modificado = texto_modificado.replace("E-MAIL:", "").strip()
+                if "TELEFONE:" in texto_modificado and not dados.get("telefone"):
+                    texto_modificado = texto_modificado.replace("TELEFONE:", "").strip()
+                
                 if texto_modificado != celula.text:
                     celula.text = ""
                     run = celula.paragraphs[0].add_run(texto_modificado)
@@ -105,6 +117,7 @@ def preencher_docx(dados):
                     run.font.name = "Times New Roman"
                     run.font.size = Pt(12)
 
+    # Criar diretório de saída e salvar o documento gerado
     output_dir = os.path.join(BASE_DIR, "output")
     os.makedirs(output_dir, exist_ok=True)
     nome_arquivo = f"PROCURACAO_{dados.get('nome', 'SEM_NOME')}.docx".replace(" ", "_")
