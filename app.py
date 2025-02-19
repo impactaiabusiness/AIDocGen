@@ -38,29 +38,24 @@ class Defesa(db.Model):
 with app.app_context():
     db.create_all()
 
-# Rota para exibir a página inicial
-@app.route('/')
-def home():
-    return render_template('home.html')
-
-# Rota para exibir a página de login
-@app.route('/login', methods=['GET', 'POST'])
+# Rota para exibir a página de login e processar o login
+@app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         usuario = request.form.get('usuario')
         senha = request.form.get('senha')
         if (usuario in ['igor', 'vitor', 'david']) and (senha in ['igor', 'vitor', 'david']):
             session['usuario'] = usuario
-            return redirect(url_for('procuracao'))
+            return redirect(url_for('procuracao'))  # Redireciona para a página de procuração
         else:
             return render_template('login.html', erro='Usuário ou senha incorretos!')
     return render_template('login.html')
 
-# Rota para exibir o formulário de procuração
+# Rota para exibir o formulário de procuração (somente se o usuário estiver logado)
 @app.route('/procuracao')
 def procuracao():
-    if 'usuario' not in session:
-        return redirect(url_for('login'))
+    if 'usuario' not in session:  # Verifica se o usuário está logado
+        return redirect(url_for('login'))  # Se não estiver logado, redireciona para a página de login
     return render_template('index.html')
 
 # Função para preencher o documento Word corretamente
@@ -141,7 +136,7 @@ def gerar_defesa():
 @app.route('/logout')
 def logout():
     session.pop('usuario', None)
-    return redirect(url_for('home'))
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=500, debug=True)
