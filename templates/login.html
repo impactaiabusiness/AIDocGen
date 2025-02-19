@@ -4,147 +4,150 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - AI DocGen</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Orbitron', sans-serif;
         }
         body {
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #000000, rgba(31, 95, 133, 0.25));
-            color: #00d4ff;
-            overflow: hidden;
+            background: linear-gradient(to right, Goldenrod 30%, black 10%);
+            font-family: 'Poppins', sans-serif;
+            padding-right: 20%;
             position: relative;
         }
-        .glow {
+        .golden-section {
             position: absolute;
-            width: 100vw;
+            left: 0;
+            width: 30%;
             height: 100vh;
-            background: radial-gradient(circle, rgba(0,212,255,0.2) 10%, rgba(0,0,0,1) 80%);
-        }
-        .background-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 12em;
-            font-weight: bold;
-            color: rgba(0, 212, 255, 0.05);
-            text-transform: uppercase;
-            z-index: 0;
-            white-space: nowrap;
-        }
-        .animation {
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            background: rgba(0, 212, 255, 0.4);
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
-        }
-        .animation1 {
-            top: 20%;
-            left: 30%;
-            animation: moveVertical 5s infinite alternate ease-in-out;
-        }
-        
-        .animation2 {
-            top: 58%;
-            left: 15%;
-            animation: moveDiagonalRight 4s infinite alternate ease-in-out;
-        }
-        
-        .animation3 {
-            top: 40%;
-            left: 70%;
-            animation: moveDiagonalRight 5s infinite alternate ease-in-out;
-        }
-        @keyframes moveVertical {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-50px); }
-        }
-        @keyframes moveDiagonalRight {
-            0% { transform: translateY(0) translateX(0); }
-            100% { transform: translateY(-50px) translateX(50px); }
-        }
-        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            background: radial-gradient(circle, rgb(172, 148, 16) 0%, #000000 100%);
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
-            position: relative;
-            z-index: 1;
-            width: 380px;
-            height: 420px;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            line-height: 1.2;
+            text-transform: uppercase;
+            padding: 20px;
+            opacity: 0;  /* Inicialmente invisível */
+            animation: fadeIn 3s ease-out forwards;  /* Animação de entrada */
+        }
+        .golden-section strong {
+            font-size: 48px;
+            font-family: 'Poppins', sans-serif;  /* Fonte personalizada */
+        }
+        
+        /* Título AIDocGen */
+        .title {
+            position: absolute;
+            top: 15%;  /* Aumente o valor para mover para baixo */
+            left: 67%;  /* Aumente para mover para a direita */
+            transform: translateX(-50%);
+            font-size: 32px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: white;
+        }
+        
+        /* Animação de fadeIn */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);  /* Começa abaixo e invisível */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);  /* Fica no seu lugar */
+            }
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 350px;
         }
         h2 {
-            font-size: 2em;
+            color: black;
             margin-bottom: 20px;
-            text-shadow: 0 0 10px #00d4ff;
+        }
+        .input-container {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-container label {
+            display: block;
+            font-weight: bold;
+            color: black;
         }
         input {
             width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #00d4ff;
+            padding: 10px;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            background: #000;
-            color: #00d4ff;
-            text-align: center;
+            background: #f0f0f0;
             font-size: 1em;
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-        }
-        input:focus {
             outline: none;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+        }
+        .options {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9em;
+            margin: 10px 0;
+        }
+        .options a {
+            text-decoration: none;
+            color: black;
+        }
+        .options a:hover {
+            text-decoration: underline;
         }
         button {
             width: 100%;
-            padding: 12px;
-            background: #00d4ff;
-            color: #000;
-            border: none;
+            padding: 10px;
+            background: #d1d1d1;
+            border: 1px solid #aaa;
             border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: bold;
-            box-shadow: 0 0 15px #00d4ff;
-            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            transition: all 0.3s;
         }
         button:hover {
-            background: #0088cc;
-            box-shadow: 0 0 30px #00d4ff, 0 0 50px #00d4ff;
-            transform: scale(1.1);
-        }
-        .error {
-            color: white;
-            font-size: 15px;
-            margin-top: 10px;
+            background: #bcbcbc;
         }
     </style>
 </head>
 <body>
-    <div class="glow"></div>
-    <div class="background-text">AI DocGen</div>
-    <div class="animation animation1"></div>
-    <div class="animation animation2"></div>
-    <div class="animation animation3"></div>    
+    <div class="title">AIDocGen</div>
+    
+    <div class="golden-section">
+        <p>A <strong>IA</strong> QUE <br> FACILITA <br> O SEU DIA.</p>
+    </div>
+    
+    <h1 class="title">AIDocGen</h1>
+
     <div class="container">
         <h2>Login</h2>
-        {% if erro %}
-            <p class="error">{{ erro }}</p>
-        {% endif %}
         <form method="POST">
-            <input type="text" name="usuario" placeholder="Usuário" required>
-            <input type="password" name="senha" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
+            <div class="input-container">
+                <label for="usuario">Login</label>
+                <input type="text" id="usuario" name="usuario" required>
+            </div>
+            <div class="input-container">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" required>
+            </div>
+            <button type="submit">Login</button>
         </form>
     </div>
 </body>
