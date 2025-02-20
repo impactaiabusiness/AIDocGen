@@ -46,17 +46,42 @@ def login():
         senha = request.form.get('senha')
         if (usuario in ['igor', 'vitor', 'david']) and (senha in ['igor', 'vitor', 'david']):
             session['usuario'] = usuario
-            return redirect(url_for('procuracao'))  # Redireciona para a página de procuração
+            return redirect(url_for('home'))  # Redireciona para a home
         else:
             return render_template('login.html', erro='Usuário ou senha incorretos!')
     return render_template('login.html')
 
-# Rota para exibir o formulário de procuração (somente se o usuário estiver logado)
+# Rota para exibir a página inicial após login
+@app.route('/home')
+def home():
+    if 'usuario' not in session:
+        return redirect(url_for('login'))
+    return render_template('home.html')
+
+# Rota para exibir o formulário de procuração
 @app.route('/procuracao')
 def procuracao():
-    if 'usuario' not in session:  # Verifica se o usuário está logado
-        return redirect(url_for('login'))  # Se não estiver logado, redireciona para a página de login
+    if 'usuario' not in session:
+        return redirect(url_for('login'))
     return render_template('index.html')
+
+# Rota para processar o formulário e gerar o DOCX
+@app.route('/gerar_defesa', methods=['POST'])
+def gerar_defesa():
+    if 'usuario' not in session:
+        return redirect(url_for('login'))
+    dados = {key: request.form.get(key) for key in request.form.keys()}
+    try:
+        docx_path = preencher_docx(dados)
+        return send_file(docx_path, as_attachment=True)
+    except Exception as e:
+        return str(e), 500
+
+# Rota para logout
+@app.route('/logout')
+def logout():
+    session.pop('usuario', None)
+    return redirect(url_for('login'))
 
 # Função para preencher o documento Word corretamente
 def preencher_docx(dados):
@@ -120,23 +145,5 @@ def preencher_docx(dados):
     doc.save(doc_path)
     return doc_path
 
-# Rota para processar o formulário e gerar o DOCX
-@app.route('/gerar_defesa', methods=['POST'])
-def gerar_defesa():
-    if 'usuario' not in session:
-        return redirect(url_for('login'))
-    dados = {key: request.form.get(key) for key in request.form.keys()}
-    try:
-        docx_path = preencher_docx(dados)
-        return send_file(docx_path, as_attachment=True)
-    except Exception as e:
-        return str(e), 500
-
-# Rota para logout
-@app.route('/logout')
-def logout():
-    session.pop('usuario', None)
-    return redirect(url_for('login'))
-
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=500, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
