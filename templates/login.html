@@ -1,154 +1,179 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - AI DocGen</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(to right, Goldenrod 30%, black 10%);
-            font-family: 'Poppins', sans-serif;
-            padding-right: 20%;
-            position: relative;
-        }
-        .golden-section {
-            position: absolute;
-            left: 0;
-            width: 30%;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            font-size: 48px;
-            font-weight: bold;
-            line-height: 1.2;
-            text-transform: uppercase;
-            padding: 20px;
-            opacity: 0;  /* Inicialmente invisível */
-            animation: fadeIn 3s ease-out forwards;  /* Animação de entrada */
-        }
-        .golden-section strong {
-            font-size: 48px;
-            font-family: 'Poppins', sans-serif;  /* Fonte personalizada */
-        }
-        
-        /* Título AIDocGen */
-        .title {
-            position: absolute;
-            top: 15%;  /* Aumente o valor para mover para baixo */
-            left: 67%;  /* Aumente para mover para a direita */
-            transform: translateX(-50%);
-            font-size: 32px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            color: white;
-        }
-        
-        /* Animação de fadeIn */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(50px);  /* Começa abaixo e invisível */
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);  /* Fica no seu lugar */
-            }
-        }
-
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            width: 350px;
-        }
-        h2 {
-            color: black;
-            margin-bottom: 20px;
-        }
-        .input-container {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        .input-container label {
-            display: block;
-            font-weight: bold;
-            color: black;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background: #f0f0f0;
-            font-size: 1em;
-            outline: none;
-        }
-        .options {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9em;
-            margin: 10px 0;
-        }
-        .options a {
-            text-decoration: none;
-            color: black;
-        }
-        .options a:hover {
-            text-decoration: underline;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background: #d1d1d1;
-            border: 1px solid #aaa;
-            border-radius: 5px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        button:hover {
-            background: #bcbcbc;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - DocGen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(to right, Goldenrod 30%, black 10%);
+      font-family: 'Poppins', sans-serif;
+      padding-right: 20%;
+      position: relative;
+    }
+    .golden-section {
+      position: absolute;
+      left: 0;
+      width: 30%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      font-size: 48px;
+      font-weight: bold;
+      line-height: 1.2;
+      text-transform: uppercase;
+      padding: 20px;
+      opacity: 0;  /* Inicialmente invisível */
+      animation: fadeIn 3s ease-out forwards;  /* Animação de entrada */
+    }
+    .golden-section strong {
+      font-size: 48px;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    /* Título DocGen */
+    .title {
+      position: absolute;
+      top: 15%;
+      left: 67%;
+      transform: translateX(-50%);
+      font-size: 32px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      color: white;
+    }
+    
+    /* Animação de fadeIn */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 350px;
+    }
+    h2 {
+      color: black;
+      margin-bottom: 20px;
+    }
+    .input-container {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .input-container label {
+      display: block;
+      font-weight: bold;
+      color: black;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #f0f0f0;
+      font-size: 1em;
+      outline: none;
+    }
+    .options {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9em;
+      margin: 10px 0;
+    }
+    .options a {
+      text-decoration: none;
+      color: black;
+    }
+    .options a:hover {
+      text-decoration: underline;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #d1d1d1;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    button:hover {
+      background: #bcbcbc;
+    }
+    
+    /* Media Query para dispositivos móveis */
+    @media (max-width: 768px) {
+      body {
+        justify-content: center;
+        padding-right: 0;
+        flex-direction: column;
+      }
+      .golden-section {
+        display: none;
+      }
+      .title {
+        position: relative;
+        top: 20px;
+        left: 0;
+        transform: none;
+        margin-bottom: 20px;
+      }
+      .container {
+        width: 90%;
+        padding: 20px;
+      }
+      /* Opcional: ajustar o background para mobile */
+      body {
+        background: linear-gradient(to bottom, Goldenrod 30%, black 70%);
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="title">AIDocGen</div>
-    
-    <div class="golden-section">
-        <p>A <strong>IA</strong> QUE <br> FACILITA <br> O SEU DIA.</p>
-    </div>
-    
-    <h1 class="title">AIDocGen</h1>
-
-    <div class="container">
-        <h2>Login</h2>
-        <form method="POST">
-            <div class="input-container">
-                <label for="usuario">Login</label>
-                <input type="text" id="usuario" name="usuario" required>
-            </div>
-            <div class="input-container">
-                <label for="senha">Senha</label>
-                <input type="password" id="senha" name="senha" required>
-            </div>
-            <button type="submit">Login</button>
-        </form>
-    </div>
+  <div class="title">DocGen</div>
+  
+  <div class="golden-section">
+    <p>o <strong>SOFTWARE</strong> QUE <br> FACILITA <br> O SEU DIA.</p>
+  </div>
+  
+  <div class="container">
+    <h2>Login</h2>
+    <form method="POST">
+      <div class="input-container">
+        <label for="usuario">Login</label>
+        <input type="text" id="usuario" name="usuario" required>
+      </div>
+      <div class="input-container">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
 </body>
 </html>
