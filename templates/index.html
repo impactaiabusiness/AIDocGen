@@ -262,96 +262,8 @@
                 </div>
               </div>
 
-              <!-- 5ª Linha: Rua -->
+              <!-- Linha para o CEP (sempre visível) -->
               <div class="row g-3 mt-1">
-                <div class="col-md-12">
-                  <label for="rua" class="form-label">Rua</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="rua"
-                    name="rua"
-                    placeholder="Nome da rua"
-                    required
-                  />
-                  <div class="invalid-feedback">Informe o nome da rua.</div>
-                </div>
-              </div>
-
-              <!-- 6ª Linha: Número e Complemento, Bairro -->
-              <div class="row g-3 mt-1">
-                <div class="col-md-6">
-                  <label for="numero_e_complemento" class="form-label">Número e Complemento</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="numero_e_complemento"
-                    name="numero_e_complemento"
-                    placeholder="Número e complemento"
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label for="bairro" class="form-label">Bairro</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="bairro"
-                    name="bairro"
-                    placeholder="Bairro"
-                    required
-                  />
-                  <div class="invalid-feedback">Informe o bairro.</div>
-                </div>
-              </div>
-
-              <!-- 7ª Linha: Cidade, Estado, CEP -->
-              <div class="row g-3 mt-1">
-                <div class="col-md-4">
-                  <label for="cidade" class="form-label">Cidade</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cidade"
-                    name="cidade"
-                    placeholder="Cidade"
-                    required
-                  />
-                  <div class="invalid-feedback">Informe a cidade.</div>
-                </div>
-                <div class="col-md-4">
-                  <label for="estado" class="form-label">Estado</label>
-                  <select class="form-select" id="estado" name="estado" required>
-                    <option value="">Selecione</option>
-                    <option value="AC">AC</option>
-                    <option value="AL">AL</option>
-                    <option value="AP">AP</option>
-                    <option value="AM">AM</option>
-                    <option value="BA">BA</option>
-                    <option value="CE">CE</option>
-                    <option value="DF">DF</option>
-                    <option value="ES">ES</option>
-                    <option value="GO">GO</option>
-                    <option value="MA">MA</option>
-                    <option value="MT">MT</option>
-                    <option value="MS">MS</option>
-                    <option value="MG">MG</option>
-                    <option value="PA">PA</option>
-                    <option value="PB">PB</option>
-                    <option value="PR">PR</option>
-                    <option value="PE">PE</option>
-                    <option value="PI">PI</option>
-                    <option value="RJ">RJ</option>
-                    <option value="RN">RN</option>
-                    <option value="RS">RS</option>
-                    <option value="RO">RO</option>
-                    <option value="RR">RR</option>
-                    <option value="SC">SC</option>
-                    <option value="SP">SP</option>
-                    <option value="SE">SE</option>
-                    <option value="TO">TO</option>
-                  </select>
-                  <div class="invalid-feedback">Selecione o estado.</div>
-                </div>
                 <div class="col-md-4">
                   <label for="cep" class="form-label">CEP</label>
                   <input
@@ -363,6 +275,99 @@
                     required
                   />
                   <div class="invalid-feedback">Informe o CEP.</div>
+                </div>
+              </div>
+
+              <!-- Campos de endereço (inicialmente ocultos) -->
+              <div id="address-fields" class="d-none">
+                <!-- Rua -->
+                <div class="row g-3 mt-1">
+                  <div class="col-md-12">
+                    <label for="rua" class="form-label">Rua</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="rua"
+                      name="rua"
+                      placeholder="Nome da rua"
+                      required
+                    />
+                    <div class="invalid-feedback">Informe o nome da rua.</div>
+                  </div>
+                </div>
+                <!-- Número e Complemento, Bairro -->
+                <div class="row g-3 mt-1">
+                  <div class="col-md-6">
+                    <label for="numero_e_complemento" class="form-label">Número e Complemento</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="numero_e_complemento"
+                      name="numero_e_complemento"
+                      placeholder="Número e complemento"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="bairro" class="form-label">Bairro</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="bairro"
+                      name="bairro"
+                      placeholder="Bairro"
+                      required
+                    />
+                    <div class="invalid-feedback">Informe o bairro.</div>
+                  </div>
+                </div>
+                <!-- Cidade e Estado -->
+                <div class="row g-3 mt-1">
+                  <div class="col-md-4">
+                    <label for="cidade" class="form-label">Cidade</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cidade"
+                      name="cidade"
+                      placeholder="Cidade"
+                      required
+                    />
+                    <div class="invalid-feedback">Informe a cidade.</div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="estado" class="form-label">Estado</label>
+                    <select class="form-select" id="estado" name="estado" required>
+                      <option value="">Selecione</option>
+                      <option value="AC">AC</option>
+                      <option value="AL">AL</option>
+                      <option value="AP">AP</option>
+                      <option value="AM">AM</option>
+                      <option value="BA">BA</option>
+                      <option value="CE">CE</option>
+                      <option value="DF">DF</option>
+                      <option value="ES">ES</option>
+                      <option value="GO">GO</option>
+                      <option value="MA">MA</option>
+                      <option value="MT">MT</option>
+                      <option value="MS">MS</option>
+                      <option value="MG">MG</option>
+                      <option value="PA">PA</option>
+                      <option value="PB">PB</option>
+                      <option value="PR">PR</option>
+                      <option value="PE">PE</option>
+                      <option value="PI">PI</option>
+                      <option value="RJ">RJ</option>
+                      <option value="RN">RN</option>
+                      <option value="RS">RS</option>
+                      <option value="RO">RO</option>
+                      <option value="RR">RR</option>
+                      <option value="SC">SC</option>
+                      <option value="SP">SP</option>
+                      <option value="SE">SE</option>
+                      <option value="TO">TO</option>
+                    </select>
+                    <div class="invalid-feedback">Selecione o estado.</div>
+                  </div>
                 </div>
               </div>
 
@@ -427,9 +432,11 @@
     </div>
   </footer>
 
+  <!-- Scripts do Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Validação do formulário utilizando Bootstrap -->
   <script>
-    // Validação do formulário utilizando Bootstrap
     (function () {
       'use strict';
       const forms = document.querySelectorAll('form');
@@ -443,6 +450,58 @@
         }, false);
       });
     })();
+  </script>
+  
+  <!-- Integração com a API ViaCEP -->
+  <script>
+    document.getElementById('cep').addEventListener('blur', function() {
+      let cep = this.value.replace(/\D/g, '');
+      if (cep !== "") {
+        // Validação básica do formato do CEP (8 dígitos)
+        let validacep = /^[0-9]{8}$/;
+        if(validacep.test(cep)) {
+          fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => response.json())
+            .then(data => {
+              if (!data.erro) {
+                document.getElementById('rua').value = data.logradouro || "";
+                document.getElementById('bairro').value = data.bairro || "";
+                document.getElementById('cidade').value = data.localidade || "";
+                document.getElementById('estado').value = data.uf || "";
+                // Exibe os campos de endereço
+                document.getElementById('address-fields').classList.remove('d-none');
+              } else {
+                alert("CEP não encontrado.");
+              }
+            })
+            .catch(error => {
+              alert("Erro ao buscar o CEP. Tente novamente mais tarde.");
+              console.error("Erro na requisição:", error);
+            });
+        } else {
+          alert("Formato de CEP inválido. Por favor, insira 8 dígitos numéricos.");
+        }
+      }
+    });
+  </script>
+
+  <!-- Controle específico do campo Número e Complemento -->
+  <script>
+    const numeroComplemento = document.getElementById('numero_e_complemento');
+
+    // Remove classes de validação do campo ao carregar a página (prevenindo "verde" automático)
+    numeroComplemento.classList.remove('is-valid', 'is-invalid');
+
+    // Só adiciona "is-valid" se o usuário realmente digitar algo
+    numeroComplemento.addEventListener('input', () => {
+      if (numeroComplemento.value.trim() === '') {
+        numeroComplemento.classList.remove('is-valid', 'is-invalid');
+      } else {
+        // Se quiser validação extra, insira aqui; caso contrário, basta marcar como válido
+        numeroComplemento.classList.remove('is-invalid');
+        numeroComplemento.classList.add('is-valid');
+      }
+    });
   </script>
 </body>
 </html>
