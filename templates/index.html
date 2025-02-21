@@ -255,26 +255,36 @@
                     class="form-control"
                     id="cpf"
                     name="cpf"
-                    placeholder="Digite o CPF"
+                    placeholder="000.000.000-00"
                     required
                   />
                   <div class="invalid-feedback">Informe o CPF.</div>
                 </div>
               </div>
 
-              <!-- Linha para o CEP (sempre visível) -->
+              <!-- Linha para o CEP + Botão de "Carregar Endereço" -->
               <div class="row g-3 mt-1">
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <label for="cep" class="form-label">CEP</label>
                   <input
                     type="text"
                     class="form-control"
                     id="cep"
                     name="cep"
-                    placeholder="CEP"
+                    placeholder="00000-000"
                     required
                   />
                   <div class="invalid-feedback">Informe o CEP.</div>
+                </div>
+                <div class="col-md-6 d-flex align-items-end">
+                  <button 
+                    type="button" 
+                    class="btn btn-sm" 
+                    id="btnBuscarCep"
+                    style="background: linear-gradient(90deg, #000, gold); color: #fff; border: none;"
+                  >
+                    Buscar CEP
+                  </button>
                 </div>
               </div>
 
@@ -452,10 +462,55 @@
     })();
   </script>
   
-  <!-- Integração com a API ViaCEP -->
+  <!-- Função de máscara para CPF: 000.000.000-00 -->
   <script>
-    document.getElementById('cep').addEventListener('blur', function() {
-      let cep = this.value.replace(/\D/g, '');
+    const cpfInput = document.getElementById('cpf');
+    cpfInput.addEventListener('input', function() {
+      let value = this.value.replace(/\D/g, ''); // Remove tudo que não for dígito
+      if (value.length > 11) value = value.slice(0, 11); // Limita a 11 dígitos
+
+      let formatted = '';
+      if (value.length > 3) {
+        formatted += value.substr(0, 3) + '.';
+        if (value.length > 6) {
+          formatted += value.substr(3, 3) + '.';
+          if (value.length > 9) {
+            formatted += value.substr(6, 3) + '-';
+            formatted += value.substr(9, 2);
+          } else {
+            formatted += value.substr(6);
+          }
+        } else {
+          formatted += value.substr(3);
+        }
+      } else {
+        formatted = value;
+      }
+      this.value = formatted;
+    });
+  </script>
+
+  <!-- Função de máscara para CEP: 00000-000 -->
+  <script>
+    const cepInput = document.getElementById('cep');
+    cepInput.addEventListener('input', function() {
+      let value = this.value.replace(/\D/g, ''); // Remove tudo que não for dígito
+      if (value.length > 8) value = value.slice(0, 8); // Limita a 8 dígitos
+
+      // Formata como 00000-000
+      if (value.length > 5) {
+        this.value = value.substr(0, 5) + '-' + value.substr(5);
+      } else {
+        this.value = value;
+      }
+    });
+  </script>
+
+  <!-- Integração com a API ViaCEP (executada ao clicar no botão) -->
+  <script>
+    const btnBuscarCep = document.getElementById('btnBuscarCep');
+    btnBuscarCep.addEventListener('click', function() {
+      const cep = cepInput.value.replace(/\D/g, '');
       if (cep !== "") {
         // Validação básica do formato do CEP (8 dígitos)
         let validacep = /^[0-9]{8}$/;
@@ -481,6 +536,8 @@
         } else {
           alert("Formato de CEP inválido. Por favor, insira 8 dígitos numéricos.");
         }
+      } else {
+        alert("Por favor, insira um CEP.");
       }
     });
   </script>
@@ -497,7 +554,6 @@
       if (numeroComplemento.value.trim() === '') {
         numeroComplemento.classList.remove('is-valid', 'is-invalid');
       } else {
-        // Se quiser validação extra, insira aqui; caso contrário, basta marcar como válido
         numeroComplemento.classList.remove('is-invalid');
         numeroComplemento.classList.add('is-valid');
       }
