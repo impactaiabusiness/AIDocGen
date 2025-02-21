@@ -16,6 +16,7 @@
       justify-content: flex-end;
       align-items: center;
       height: 100vh;
+      /* Ajuste no gradiente para transição suave */
       background: linear-gradient(to right, Goldenrod 30%, black 10%);
       font-family: 'Poppins', sans-serif;
       padding-right: 20%;
@@ -88,6 +89,7 @@
       display: block;
       font-weight: bold;
       color: black;
+      margin-bottom: 5px;
     }
     input {
       width: 100%;
@@ -97,6 +99,13 @@
       background: #f0f0f0;
       font-size: 1em;
       outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    /* Efeito de foco nos inputs */
+    input:focus {
+      border-color: Goldenrod;
+      box-shadow: 0 0 5px rgba(218, 165, 32, 0.5);
+      background: #fff;
     }
     .options {
       display: flex;
@@ -114,16 +123,21 @@
     button {
       width: 100%;
       padding: 10px;
-      background: #d1d1d1;
-      border: 1px solid #aaa;
+      background: Goldenrod;
+      color: white;
+      border: none;
       border-radius: 5px;
       font-size: 1.1em;
       font-weight: bold;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
     }
+    /* Efeito de hover e active no botão */
     button:hover {
-      background: #bcbcbc;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    button:active {
+      transform: scale(0.98);
     }
     
     /* Media Query para dispositivos móveis */
@@ -132,6 +146,7 @@
         justify-content: center;
         padding-right: 0;
         flex-direction: column;
+        background: linear-gradient(to bottom, Goldenrod 30%, black 70%);
       }
       .golden-section {
         display: none;
@@ -146,10 +161,6 @@
       .container {
         width: 90%;
         padding: 20px;
-      }
-      /* Opcional: ajustar o background para mobile */
-      body {
-        background: linear-gradient(to bottom, Goldenrod 30%, black 70%);
       }
     }
   </style>
@@ -166,11 +177,11 @@
     <form method="POST">
       <div class="input-container">
         <label for="usuario">Login</label>
-        <input type="text" id="usuario" name="usuario" required>
+        <input type="text" id="usuario" name="usuario" required autocomplete="username">
       </div>
       <div class="input-container">
         <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" required>
+        <input type="password" id="senha" name="senha" required autocomplete="current-password">
       </div>
       <button type="submit">Login</button>
     </form>
