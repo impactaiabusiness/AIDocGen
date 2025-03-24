@@ -146,4 +146,8 @@ def preencher_docx(dados):
     return doc_path
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     app.run(host="0.0.0.0", port=5000, debug=True)
+=======
+    app.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)), debug=True)
+>>>>>>> d4406e0b275512b1135b27ce6b05672c2ae12622
