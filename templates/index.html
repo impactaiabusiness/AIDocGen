@@ -22,7 +22,7 @@
       background-size: 600% 600%;
       animation: gradientAnimation 16s ease infinite;
       font-family: 'Poppins', sans-serif;
-      position: relative; /* para que o contêiner da estrela possa ficar fixo atrás */
+      position: relative;
       min-height: 100vh;
     }
     @keyframes gradientAnimation {
@@ -38,13 +38,13 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;           /* fica atrás de todo o conteúdo */
-      pointer-events: none;  /* clique "atravessa" a área */
+      z-index: -1;
+      pointer-events: none;
       overflow: hidden;
     }
     .shooting-star {
       position: absolute;
-      top: -50px; /* começa fora da tela */
+      top: -50px;
       left: -50px;
       width: 3px;
       height: 3px;
@@ -53,7 +53,6 @@
       box-shadow: 0 0 8px 2px white;
       animation: starFall 4s ease-in-out infinite;
     }
-    /* Trajeto e efeito da estrela cadente */
     @keyframes starFall {
       0% {
         transform: translate(0, 0) scale(0);
@@ -157,25 +156,12 @@
             <i class="fas fa-file-contract me-2"></i>ELABORAÇÃO DE PROCURAÇÃO
           </div>
           <div class="card-body">
-<<<<<<< HEAD
             <form action="{{ url_for('main.gerar_procuracao') }}" method="POST">
-
-=======
-            <form action="/gerar_defesa" method="POST" novalidate>
->>>>>>> d4406e0b275512b1135b27ce6b05672c2ae12622
-              
               <!-- 1ª Linha: Nome Completo -->
               <div class="row g-3">
                 <div class="col-md-12">
                   <label for="nome" class="form-label">Nome Completo</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="nome"
-                    name="nome"
-                    placeholder="Digite o nome completo"
-                    required
-                  />
+                  <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome completo" required />
                   <div class="invalid-feedback">Por favor, informe o nome completo.</div>
                 </div>
               </div>
@@ -215,26 +201,12 @@
               <div class="row g-3 mt-1">
                 <div class="col-md-6">
                   <label for="profissao" class="form-label">Profissão</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="profissao"
-                    name="profissao"
-                    placeholder="Digite a profissão"
-                    required
-                  />
+                  <input type="text" class="form-control" id="profissao" name="profissao" placeholder="Digite a profissão" required />
                   <div class="invalid-feedback">Informe a profissão.</div>
                 </div>
                 <div class="col-md-6">
                   <label for="rg" class="form-label">RG</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="rg"
-                    name="rg"
-                    placeholder="Digite o RG"
-                    required
-                  />
+                  <input type="text" class="form-control" id="rg" name="rg" placeholder="Digite o RG" required />
                   <div class="invalid-feedback">Informe o RG.</div>
                 </div>
               </div>
@@ -243,26 +215,12 @@
               <div class="row g-3 mt-1">
                 <div class="col-md-6">
                   <label for="orgao" class="form-label">Órgão Emissor do RG</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="orgao"
-                    name="orgao"
-                    placeholder="Órgão emissor"
-                    required
-                  />
+                  <input type="text" class="form-control" id="orgao" name="orgao" placeholder="Órgão emissor" required />
                   <div class="invalid-feedback">Informe o órgão emissor.</div>
                 </div>
                 <div class="col-md-6">
                   <label for="cpf" class="form-label">CPF</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cpf"
-                    name="cpf"
-                    placeholder="000.000.000-00"
-                    required
-                  />
+                  <input type="text" class="form-control" id="cpf" name="cpf" placeholder="000.000.000-00" required />
                   <div class="invalid-feedback">Informe o CPF.</div>
                 </div>
               </div>
@@ -271,23 +229,11 @@
               <div class="row g-3 mt-1">
                 <div class="col-md-6">
                   <label for="cep" class="form-label">CEP</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cep"
-                    name="cep"
-                    placeholder="00000-000"
-                    required
-                  />
+                  <input type="text" class="form-control" id="cep" name="cep" placeholder="00000-000" required />
                   <div class="invalid-feedback">Informe o CEP.</div>
                 </div>
                 <div class="col-md-6 d-flex align-items-end">
-                  <button 
-                    type="button" 
-                    class="btn btn-sm" 
-                    id="btnBuscarCep"
-                    style="background: linear-gradient(90deg, #000, gold); color: #fff; border: none;"
-                  >
+                  <button type="button" class="btn btn-sm" id="btnBuscarCep" style="background: linear-gradient(90deg, #000, gold); color: #fff; border: none;">
                     Buscar CEP
                   </button>
                 </div>
@@ -299,14 +245,7 @@
                 <div class="row g-3 mt-1">
                   <div class="col-md-12">
                     <label for="rua" class="form-label">Rua</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="rua"
-                      name="rua"
-                      placeholder="Nome da rua"
-                      required
-                    />
+                    <input type="text" class="form-control" id="rua" name="rua" placeholder="Nome da rua" required />
                     <div class="invalid-feedback">Informe o nome da rua.</div>
                   </div>
                 </div>
@@ -314,24 +253,11 @@
                 <div class="row g-3 mt-1">
                   <div class="col-md-6">
                     <label for="numero_e_complemento" class="form-label">Número e Complemento</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="numero_e_complemento"
-                      name="numero_e_complemento"
-                      placeholder="Número e complemento"
-                    />
+                    <input type="text" class="form-control" id="numero_e_complemento" name="numero_e_complemento" placeholder="Número e complemento" />
                   </div>
                   <div class="col-md-6">
                     <label for="bairro" class="form-label">Bairro</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="bairro"
-                      name="bairro"
-                      placeholder="Bairro"
-                      required
-                    />
+                    <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" required />
                     <div class="invalid-feedback">Informe o bairro.</div>
                   </div>
                 </div>
@@ -339,14 +265,7 @@
                 <div class="row g-3 mt-1">
                   <div class="col-md-4">
                     <label for="cidade" class="form-label">Cidade</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="cidade"
-                      name="cidade"
-                      placeholder="Cidade"
-                      required
-                    />
+                    <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" required />
                     <div class="invalid-feedback">Informe a cidade.</div>
                   </div>
                   <div class="col-md-4">
@@ -390,24 +309,12 @@
               <div class="row g-3 mt-1">
                 <div class="col-md-3">
                   <label for="ddd" class="form-label">DDD</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="ddd"
-                    name="ddd"
-                    placeholder="DDD"
-                  />
+                  <input type="text" class="form-control" id="ddd" name="ddd" placeholder="DDD" />
                   <div class="invalid-feedback">Informe o DDD.</div>
                 </div>
                 <div class="col-md-9">
                   <label for="telefone" class="form-label">Telefone</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="telefone"
-                    name="telefone"
-                    placeholder="Telefone"
-                  />
+                  <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone" />
                   <div class="invalid-feedback">Informe o telefone.</div>
                 </div>
               </div>
@@ -416,13 +323,7 @@
               <div class="row g-3 mt-1">
                 <div class="col-md-12">
                   <label for="email" class="form-label">E-mail</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="email"
-                    name="email"
-                    placeholder="E-mail"
-                  />
+                  <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" />
                 </div>
               </div>
 
@@ -471,9 +372,8 @@
   <script>
     const cpfInput = document.getElementById('cpf');
     cpfInput.addEventListener('input', function() {
-      let value = this.value.replace(/\D/g, ''); // Remove tudo que não for dígito
-      if (value.length > 11) value = value.slice(0, 11); // Limita a 11 dígitos
-
+      let value = this.value.replace(/\D/g, '');
+      if (value.length > 11) value = value.slice(0, 11);
       let formatted = '';
       if (value.length > 3) {
         formatted += value.substr(0, 3) + '.';
@@ -494,15 +394,13 @@
       this.value = formatted;
     });
   </script>
-
+  
   <!-- Função de máscara para CEP: 00000-000 -->
   <script>
     const cepInput = document.getElementById('cep');
     cepInput.addEventListener('input', function() {
-      let value = this.value.replace(/\D/g, ''); // Remove tudo que não for dígito
-      if (value.length > 8) value = value.slice(0, 8); // Limita a 8 dígitos
-
-      // Formata como 00000-000
+      let value = this.value.replace(/\D/g, '');
+      if (value.length > 8) value = value.slice(0, 8);
       if (value.length > 5) {
         this.value = value.substr(0, 5) + '-' + value.substr(5);
       } else {
@@ -510,14 +408,13 @@
       }
     });
   </script>
-
-  <!-- Integração com a API ViaCEP (executada ao clicar no botão) -->
+  
+  <!-- Integração com a API ViaCEP -->
   <script>
     const btnBuscarCep = document.getElementById('btnBuscarCep');
     btnBuscarCep.addEventListener('click', function() {
       const cep = cepInput.value.replace(/\D/g, '');
       if (cep !== "") {
-        // Validação básica do formato do CEP (8 dígitos)
         let validacep = /^[0-9]{8}$/;
         if(validacep.test(cep)) {
           fetch(`https://viacep.com.br/ws/${cep}/json/`)
@@ -528,7 +425,6 @@
                 document.getElementById('bairro').value = data.bairro || "";
                 document.getElementById('cidade').value = data.localidade || "";
                 document.getElementById('estado').value = data.uf || "";
-                // Exibe os campos de endereço
                 document.getElementById('address-fields').classList.remove('d-none');
               } else {
                 alert("CEP não encontrado.");
@@ -546,15 +442,11 @@
       }
     });
   </script>
-
+  
   <!-- Controle específico do campo Número e Complemento -->
   <script>
     const numeroComplemento = document.getElementById('numero_e_complemento');
-
-    // Remove classes de validação do campo ao carregar a página (prevenindo "verde" automático)
     numeroComplemento.classList.remove('is-valid', 'is-invalid');
-
-    // Só adiciona "is-valid" se o usuário realmente digitar algo
     numeroComplemento.addEventListener('input', () => {
       if (numeroComplemento.value.trim() === '') {
         numeroComplemento.classList.remove('is-valid', 'is-invalid');
