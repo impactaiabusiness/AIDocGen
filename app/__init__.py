@@ -34,15 +34,15 @@ def create_app():
     with app.app_context():
         db.create_all()
         
-        # Criação do usuário permanente 'igorteste' com senha 'igor1212'
-        usuario_fixo = User.query.filter_by(username='igorteste').first()
+        # Criação do usuário permanente 'driveup' com senha 'driveup'
+        usuario_fixo = User.query.filter_by(username='driveup').first()
         if not usuario_fixo:
-            novo_user = User(username='igorteste')
-            novo_user.set_password('igor1212')
+            novo_user = User(username='driveup')
+            novo_user.set_password('driveup')
             db.session.add(novo_user)
             db.session.commit()
-            print("Usuário 'igorteste' criado com a senha 'igor1212'.")
+            print("Usuário 'driveup' criado com a senha 'driveup'.")
         else:
-            print("Usuário 'igorteste' já existe no banco.")
+            print("Usuário 'driveup' já existe no banco.")
 
     return app
