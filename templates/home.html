@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI DocGen - Página Inicial</title>
+  <title>DocGen - Página Inicial</title>
   <style>
     /* ------------------------------ */
     /* RESET E CONFIGURAÇÕES GERAIS  */
@@ -49,14 +49,25 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
     }
     .navbar h1 {
       font-size: 1.8rem;
     }
+    /* Botão de menu (3 pontinhos) - escondido no desktop */
+    .menu-toggle {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: goldenrod;
+      cursor: pointer;
+      display: none;
+    }
+    /* Links da Navbar */
     .nav-links {
       display: flex;
       gap: 20px;
-      align-items: center; /* Alinha todos os itens verticalmente */
+      align-items: center; /* Alinha verticalmente */
     }
     .nav-links a {
       color: goldenrod;
@@ -270,13 +281,49 @@
     .profissionais.fade-in-up {
       animation-delay: 0.6s;
     }
+
+    /* ------------------------------ */
+    /* RESPONSIVO - MENU MOBILE       */
+    /* ------------------------------ */
+    @media (max-width: 768px) {
+      /* Exibe o botão de menu e esconde os links inicialmente */
+      .menu-toggle {
+        display: block;
+      }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: black;
+        flex-direction: column;
+        width: 200px;
+        padding: 10px;
+      }
+      .nav-links a {
+        color: goldenrod;
+        padding: 10px;
+        border-bottom: 1px solid #333;
+      }
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+      .nav-links .btn-logout {
+        margin-top: 10px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+    }
   </style>
 </head>
 <body>
   <!-- HEADER -->
   <header>
     <div class="navbar">
-      <h1>AI DocGen</h1>
+      <h1>DocGen</h1>
+      <!-- Botão de menu para mobile -->
+      <button class="menu-toggle">&#8942;</button>
       <nav class="nav-links">
         <a href="#hero">Início</a>
         <a href="#options">Serviços</a>
@@ -290,10 +337,10 @@
   <main>
     <!-- HERO SECTION -->
     <section id="hero" class="hero fade-in-up">
-      <h2>Bem-vindo ao AI DocGen</h2>
+      <h2>Bem-vindo ao DocGen</h2>
       <p>Automatize a criação de documentos jurídicos de forma rápida e segura.</p>
       <div class="hero-buttons">
-        <a href="{{ url_for('procuracao') }}" class="btn-hero">Gerar Procuração</a>
+        <a href="{{ url_for('main.procuracao') }}" class="btn-hero">Gerar Procuração</a>
         <a href="#profissionais" class="btn-hero">Meus Dados</a>
       </div>
     </section>
@@ -301,9 +348,13 @@
     <!-- OPÇÕES - CARDS -->
     <section id="options" class="options fade-in-up">
       <div class="container">
-        <a href="/procuracao" class="card">
+        <a href="{{ url_for('main.procuracao') }}" class="card">
           <h3>Gerar Procuração</h3>
           <p>Clique para criar sua procuração de forma rápida e segura.</p>
+        </a>
+        <a href="{{ url_for('main.contrato') }}" class="card">
+          <h3>Gerar Contrato</h3>
+          <p>Clique para criar seu contrato de forma rápida e segura.</p>
         </a>
         <!-- Exemplo de outro card, para expansão futura -->
         <div class="card">
@@ -324,7 +375,7 @@
           </div>
           <div class="form-group">
             <label for="empresa">Empresa:</label>
-            <input type="text" id="empresa" name="empresa" placeholder="Ex: AI DocGen" required>
+            <input type="text" id="empresa" name="empresa" placeholder="Ex: DocGen" required>
           </div>
           <div class="form-group">
             <label for="cargo">Cargo:</label>
@@ -346,17 +397,16 @@
 
   <!-- RODAPÉ -->
   <footer>
-    <p>&copy; 2025 AI DocGen. Todos os direitos reservados.</p>
+    <p>&copy; 2025 DocGen. Todos os direitos reservados.</p>
   </footer>
 
-  <!-- SCRIPT PARA INICIAR AS ANIMAÇÕES AO CARREGAR A PÁGINA -->
+  <!-- SCRIPT PARA O MENU MOBILE -->
   <script>
-    // Quando a página carregar, adiciona a classe fade-in-up para as seções
-    window.addEventListener('load', () => {
-      const sections = document.querySelectorAll('.fade-in-up');
-      sections.forEach((section) => {
-        section.style.opacity = 1; // Garante que a opacidade inicial seja 1
-      });
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
     });
   </script>
 </body>
