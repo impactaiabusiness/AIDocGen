@@ -339,7 +339,7 @@
       <p>Automatize a criação de documentos jurídicos de forma rápida e segura.</p>
       <div class="hero-buttons">
         <a href="{{ url_for('main.procuracao') }}" class="btn-hero">Gerar Procuração</a>
-        <a href="#profissionais" class="btn-hero">Meus Dados</a>
+        <a href="{{ url_for('main.contrato') }}" class="btn-hero">Gerar Contrato</a>
       </div>
     </section>
 
@@ -349,6 +349,10 @@
         <a href="{{ url_for('main.procuracao') }}" class="card">
           <h3>Gerar Procuração</h3>
           <p>Clique para criar sua procuração de forma rápida e segura.</p>
+        </a>
+        <a href="{{ url_for('main.contrato') }}" class="card">
+          <h3>Gerar Contrato</h3>
+          <p>Clique para criar seu contrato de forma rápida e segura.</p>
         </a>
         <div class="card">
           <h3>Em Breve</h3>
