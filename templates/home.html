@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DocGen - Página Inicial</title>
+  <style>
+    /* ------------------------------ */
+    /* RESET E CONFIGURAÇÕES GERAIS  */
+    /* ------------------------------ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      color: #000;
+      background-color: #fff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ------------------------------ */
+    /* HEADER COM NAVBAR FIXA        */
+    /* ------------------------------ */
+    header {
+      background-color: black;
+      color: goldenrod;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .navbar {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    .navbar h1 {
+      font-size: 1.8rem;
+    }
+    /* Botão de menu (3 pontinhos) - escondido no desktop */
+    .menu-toggle {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: goldenrod;
+      cursor: pointer;
+      display: none;
+    }
+    /* Links da Navbar */
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: goldenrod;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #d4a017;
+    }
+    .btn-logout {
+      background-color: goldenrod;
+      color: black;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .btn-logout:hover {
+      background-color: #d4a017;
+    }
+
+    /* ------------------------------ */
+    /* ANIMAÇÕES EM CSS              */
+    /* ------------------------------ */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 1s ease forwards;
+    }
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+
+    /* ------------------------------ */
+    /* MAIN - CONTEÚDO PRINCIPAL     */
+    /* ------------------------------ */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 80px 20px;
+      background-color: white;
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      color: black;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    .btn-hero {
+      background-color: goldenrod;
+      color: black;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .btn-hero:hover {
+      background-color: #d4a017;
+    }
+
+    /* OPÇÕES - CARDS */
+    .options {
+      background: #f8f8f8;
+      padding: 40px 0;
+    }
+    .options .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border: 2px solid goldenrod;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      padding: 20px;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: black;
+    }
+    .card p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* SEÇÃO DE CAMPOS PROFISSIONAIS (FORMULÁRIO) */
+    .profissionais {
+      padding: 40px 0;
+      background-color: white;
+    }
+    .profissionais .container {
+      width: 90%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .profissionais h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: black;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .form-group input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
+    .btn-submit {
+      background-color: goldenrod;
+      color: black;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .btn-submit:hover {
+      background-color: #d4a017;
+    }
+
+    /* ------------------------------ */
+    /* FOOTER                         */
+    /* ------------------------------ */
+    footer {
+      background-color: black;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+    footer p {
+      font-size: 0.9rem;
+    }
+
+    /* ------------------------------ */
+    /* ESTILOS DE SEÇÕES ANIMADAS    */
+    /* ------------------------------ */
+    .hero, .options, .profissionais {
+      opacity: 0;
+    }
+
+    .hero.fade-in-up {
+      animation-delay: 0.2s;
+    }
+    .options.fade-in-up {
+      animation-delay: 0.4s;
+    }
+    .profissionais.fade-in-up {
+      animation-delay: 0.6s;
+    }
+
+    /* ------------------------------ */
+    /* RESPONSIVO - MENU MOBILE       */
+    /* ------------------------------ */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: black;
+        flex-direction: column;
+        width: 200px;
+        padding: 10px;
+      }
+      .nav-links a {
+        color: goldenrod;
+        padding: 10px;
+        border-bottom: 1px solid #333;
+      }
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+      .nav-links .btn-logout {
+        margin-top: 10px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="navbar">
+      <h1>DocGen</h1>
+      <!-- Botão de menu para mobile -->
+      <button class="menu-toggle">&#8942;</button>
+      <nav class="nav-links">
+        <a href="#hero">Início</a>
+        <a href="#options">Serviços</a>
+        <a href="#profissionais">Profissional</a>
+        <button class="btn-logout">Sair</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero fade-in-up">
+      <h2>Bem-vindo ao DocGen</h2>
+      <p>Automatize a criação de documentos jurídicos de forma rápida e segura.</p>
+      <div class="hero-buttons">
+        <a href="{{ url_for('main.procuracao') }}" class="btn-hero">Gerar Procuração Dra. Jacquelline</a>
+        <a href="{{ url_for('main.procuracao_jose') }}" class="btn-hero">Gerar Procuração Dr. José</a>
+      </div>
+    </section>
+
+    <!-- OPÇÕES - CARDS -->
+<section id="options" class="options fade-in-up">
+  <div class="container">
+    <a href="{{ url_for('main.procuracao') }}" class="card">
+      <h3>Gerar Procuração Dra. Jacquelline</h3>
+      <p>Clique para criar sua procuração de forma rápida e segura.</p>
+    </a>
+    <a href="{{ url_for('main.procuracao_jose') }}" class="card">
+      <h3>Gerar Procuração Dr. José</h3>
+      <p>Clique para criar sua procuração de forma rápida e segura.</p>
+    </a>
+    <div class="card">
+      <h3>Em Breve</h3>
+      <p>Novas funcionalidades para automação de documentos!</p>
+    </div>
+  </div>
+</section>
+
+
+    <!-- CAMPOS PROFISSIONAIS (FORMULÁRIO) -->
+    <section id="profissionais" class="profissionais fade-in-up">
+      <div class="container">
+        <h2>Campos Profissionais</h2>
+        <form>
+          <div class="form-group">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" placeholder="Ex: João da Silva" required>
+          </div>
+          <div class="form-group">
+            <label for="empresa">Empresa:</label>
+            <input type="text" id="empresa" name="empresa" placeholder="Ex: DocGen" required>
+          </div>
+          <div class="form-group">
+            <label for="cargo">Cargo:</label>
+            <input type="text" id="cargo" name="cargo" placeholder="Ex: Diretor Jurídico">
+          </div>
+          <div class="form-group">
+            <label for="cnpj">CNPJ:</label>
+            <input type="text" id="cnpj" name="cnpj" placeholder="Ex: 12.345.678/0001-99">
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail Profissional:</label>
+            <input type="email" id="email" name="email" placeholder="Ex: contato@empresa.com" required>
+          </div>
+          <button type="submit" class="btn-submit">Salvar Dados</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <p>&copy; 2025 DocGen. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- SCRIPT PARA O MENU MOBILE -->
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
