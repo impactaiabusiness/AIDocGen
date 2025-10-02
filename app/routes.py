@@ -54,25 +54,6 @@ def gerar_procuracao():
         flash('Ocorreu um erro ao gerar a procuração. Por favor, tente novamente.', 'danger')
         return redirect(url_for('main.home')), 500
 
-# --------- NOVA PROCURAÇÃO DR. JOSÉ ---------
-@main_bp.route('/procuracao-jose')
-@login_required
-def procuracao_jose():
-    return render_template('index2.html')
-
-@main_bp.route('/gerar_procuracao_jose', methods=['POST'])
-@login_required
-def gerar_procuracao_jose():
-    dados = {key: request.form.get(key) for key in request.form.keys()}
-    try:
-        base_dir = os.path.dirname(os.path.abspath(__file__))
-        docx_path = preencher_procuracao_jose(dados, base_dir)
-        return send_file(docx_path, as_attachment=True)
-    except Exception as e:
-        current_app.logger.error(f"Erro ao gerar procuração do Dr. José: {e}")
-        flash('Ocorreu um erro ao gerar a procuração do Dr. José. Por favor, tente novamente.', 'danger')
-        return redirect(url_for('main.home')), 500
-
 # --------- LOGOUT ---------
 @main_bp.route('/logout')
 @login_required
